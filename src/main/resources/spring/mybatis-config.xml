@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
 
+<!--
+	setting에 들어갈 수 있는 속성
+	
+	cacheModelsEnabled : 디폴트값은 true.  
+	성능을 향상시키는 기법으로, 최근에 사용된 데이터를 메모리에서 제거 하지 않고, 계속 저장해 두는 것을 말한다.
+	 이 설정은 IBATIS 혹은 MyBatis 가 캐싱을 사용할지 여부를 지정하는데 사용합니다.
+	 
+	enhancementEnabled : 디폴트값은 true
+	CGLIB에 최적화된 클래스를 통해 적재지연성능을 향상시킬지 여부를 지정하는데 사용한다.
+	CGLIB 는 실행시간에 코드를 생성하는 라이브러리. 꼭 필요하다고 생각되지 않으면 사용하지 않는 것이 좋다.
+	
+	useStatementNamespace : 디폴트 값은 false
+	매핑구문이 적절한 이름을 가지고 있어야 ibatis, Mybatis 가 실행될 수 있도록 하는 옵션
+	sqlMap 을 정의할떄, 적절한 맵 이름을 가진 매핑구문을 선택하는데 사용되며, 
+	예를 들어 계좌를 추가하자고 한다면, Account.insert 매핑구문을 호출하면되요! 
+	다른맵에서 원하는 대로 여러 insert 라는 매핑구문을 작성해도 이름이 충돌하지 않게 되요!
+	Account.insert 와 School.insert는 충돌나지 않는다.
+	이 nameSpace 를 사용하게되면, 대규모시스템작업에서 도움이 많이 된다..
+	 
+	maxRequests : 비권장
+	예를들어, <Settins maxRequests="32" />
+	이것은, 입력,수정,삭제, 그리고 저장 프로시져 호출 같은 모든 sql 작업을, 디폴트 값 512 대신에
+	최대 32개의 요청만이 한번에 수행될 수 있도록 최대 요청 개수를 설정하는 것 그런 이유로 비권장.
+
+ -->
+
 <configuration>
 
 	<settings>
@@ -8,7 +34,7 @@
 		<setting name="cacheEnabled" value="false" />
 		<!--  컬럼을 카멜케이스 방식으로 자바에 자동 바인딩 해주는 옵션 -->
 		<setting name="mapUnderscoreToCamelCase" value="true" />
-
+		<!-- 디폴트 값은 "true" 이며, 적재지연이라고도 부른다. 정보를 필요할때만 읽어들이고 다른데이터는 분명한 요청이 있을때까지 적재를 잠시 미루는 속성  -->
 		<setting name="lazyLoadingEnabled" value="true" />
 	</settings>
 

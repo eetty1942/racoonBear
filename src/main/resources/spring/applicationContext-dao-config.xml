@@ -8,8 +8,10 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-	<!-- DB만을 위한 -->
-	
+	<!-- DB만을 위한 설정 파일 -->
+	<!--
+		JDBC 커넥션 정보 Alias 해 
+	 -->
 	<util:properties id="jdbc" location="class path:/properties/jdbc.properties" />
 	
 	<!-- DataSource -->

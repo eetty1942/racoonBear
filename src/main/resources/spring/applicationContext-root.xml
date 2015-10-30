@@ -8,7 +8,6 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
  	<!-- 톰캣, 등 용도에 따른 구분 -->
-
 	<context:component-scan base-package="com.cdg.racoonBear">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>

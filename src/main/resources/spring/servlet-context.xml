@@ -1,26 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
-		
-		
-		
+
+
+
+	<!-- 3.0 버전 이상부터 지원되는 태그
+		Annotation기반의 Controller호출이나 필요한 bean(객체)설정을 편리하게 하기위해서 만들어졌다. 
+		mvc:annotation-driven은 수정이 어렵다. 때문에, 어떤 기능을 제공하는지 잘 알고 있는 것이 현명하다.
+		mvc:annotation-driven에서 쓰는 bean설정을 중복으로 쓰지 않도록 주의한다.
+	 -->
 	<mvc:annotation-driven />
-	
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+	<!-- 빈에 등록된 라이브러리가 자바 빈과 관련한 프로퍼 접근하기위한 새로운 빈을 정의하기 위함 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="2" />
 	</bean>
+
+	<!--
+	베이스 패키지를 설정하면 지정한 패키지와 그 하위 패키지를 소환한다.
+	아래는 스캔 대상의 클래스의 범위를 지정해준다. 
 	
+	이 기능을 통해 스캔되는  어노테이션
+	  @Component (@Service @Repository @Controller), @Required, @Autowired, @Inject  
+	 -->
 	<context:component-scan base-package="com.cdg.racoonBear">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<!-- 올 수 있는 속성 값 : annotation, assignable, regex, aspectj -->
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
 </beans>
